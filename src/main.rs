@@ -37,6 +37,6 @@ fn main() {
     if let Some(First) = result {
         println!("Good");
     } else {
-        println!("Good");
+        println!("Bad");
     }
 }
