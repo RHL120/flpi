@@ -7,16 +7,15 @@ enum State {
 
 use State::*;
 
-fn delta(s: State, c: &str) -> Option<State> {
+fn delta(s: State, c: char) -> Option<State> {
     match c {
-        "" => Some(s),
-        "0" => match s {
+        '0' => match s {
             Zeroth => Some(Zeroth),
             First => Some(Second),
             Second => Some(Zeroth),
             Third => Some(Second),
         },
-        "1" => match s {
+        '1' => match s {
             Zeroth => Some(First),
             First => Some(Third),
             Second => Some(First),
@@ -33,7 +32,7 @@ fn main() {
         std::process::exit(1)
     });
     let result = arg.chars().fold(Some(Zeroth), |x, y| {
-        delta(x?, &y.to_string())
+        delta(x?, y)
     });
     if let Some(Zeroth) = result {
         println!("Good");
